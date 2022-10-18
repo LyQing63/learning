@@ -521,8 +521,3 @@ public static void generate(String artistId, List<String> texts) {
   }
 
 ```
-
-
-
-
-
