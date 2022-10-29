@@ -169,3 +169,50 @@ let c = a / b;
 ```
 
 > 可以用typeof (变量) 来判断变量类型
+
+### 类型转换
+
+#### 隐式转换
+
+* 数字加字符串，数字隐式转换为字符串
+* 数字字符串与数字做非加法运算，字符串隐式转换为数字
+* 数字字符串与数字字符串做非加法运算，隐式转换为数字
+
+#### 强制类型转换
+
+##### parseint
+
+* 整数字符串转换为整数
+```javascript
+let number = "20";
+//  将number转换为整数类型
+let converNumber = parseInt(number);
+console.log(converNumber); // 20
+// 判断转换后的数据类型
+console.log(typeof converNumber); // number
+```
+* 小数字符串转换为整数
+```javascript
+let number = "20.5";
+let converNumber = parseInt(number);
+console.log(converNumber); // 20  不足21一律按照20算
+console.log(typeof converNumber); // number
+```
+* 小数转换为整数
+```javascript
+let number = 20.5;
+let converNumber = parseInt(number);
+console.log(converNumber); // 20
+```
+
+##### parseFloat
+
+* 将小数字符串转换为小数
+```javascript
+let number = "20.9";
+let converNumber = parseFloat(number);
+console.log(converNumber); // 20.9
+console.log(typeof converNumber); // number
+```
+
+
