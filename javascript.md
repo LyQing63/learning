@@ -215,4 +215,13 @@ console.log(converNumber); // 20.9
 console.log(typeof converNumber); // number
 ```
 
+#### 相等/全等
+
+* 相等：```==``` ——>判断值是否相同
+* 全等：```===```——>在相等的基础上还要判断类型是否相同
+***推荐使用全等***
+
+#### 自增自减
+
+与java相同
 
