@@ -223,5 +223,9 @@ console.log(typeof converNumber); // number
 
 #### 自增自减
 
-与java相同
+与Java类似 
 
+#### 布尔类型
+
+与Java类似
+不能用and与or，要使用```&&``` 与``` ||```
