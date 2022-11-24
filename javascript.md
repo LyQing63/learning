@@ -229,3 +229,47 @@ console.log(typeof converNumber); // number
 
 与Java类似
 不能用and与or，要使用```&&``` 与``` ||```
+
+### 数组
+
+与python类似;
+* 在末尾增加元素：变量名.push("内容");
+* 在开头增加元素：变量名.unshift("内容");
+* 从后往前删：变量名.pop();
+* 从前往前删：变量名.shift();
+* 删除/替换指定位置：变量名.splice(int x, int y, n);  //x为起始位置，y为步长，n为要替换的值
+	* 插入
+```javascript
+let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
+
+schools.splice(2, 0, '江西理工大学');
+console.log(schools); //  ["清华大学", "北京大学", "江西理工大学", "浙江大学", "同济大学"]
+```
+*	* 替换
+```javascript
+let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
+
+schools.splice(2, 1, '江西理工大学');
+console.log(schools); // ["清华大学", "北京大学", "江西理工大学", "同济大学"]
+```
+*	* 覆盖
+```javascript
+let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
+
+schools.splice(2, 2, '江西理工大学');
+console.log(schools); // ["清华大学", "北京大学", "江西理工大学"]
+```
+* 查询：对象名.indexOf("查询值" , n); //n为开始查询位置 ,输出为查询对象的位置，找不到返回-1
+```javascript
+let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
+
+let result = schools.indexOf('大连理工');
+console.log(result); // -1
+```
+
+```javascript
+let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
+
+let result = schools.indexOf('浙江大学', 3);
+console.log(result); // -1
+```
