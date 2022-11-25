@@ -273,3 +273,55 @@ let schools = ['清华大学', '北京大学', '浙江大学', '同济大学'];
 let result = schools.indexOf('浙江大学', 3);
 console.log(result); // -1
 ```
+
+### for 循环
+
+* 写法与JAVA类似
+```javascript
+let peppaFamily = ["佩奇", "乔治", "猪妈妈", "猪爸爸"];
+
+for (let i = 0; i < peppaFamily.length; i++) {
+  console.log(peppaFamily[i]);
+}
+```
+* for...in
+```javascript
+let peppaFamily = ["佩奇", "乔治", "猪妈妈", "猪爸爸"];
+
+for (let i in peppaFamily) {
+  console.log(peppaFamily[i]);
+}
+```
+* for...of 
+```javascript
+let peppaFamily = ["佩奇", "乔治", "猪妈妈", "猪爸爸"];
+
+for (let item of peppaFamily) {
+  console.log(item);
+}
+```
+> for...in 与for...of 的区别:for....in遍历数组下标;for...of遍历数组值
+
+### while 循环
+* 与JAVA类似
+
+```javascript
+let peppaFriends = ['小狗丹尼', '小猫坎迪', '狐狸弗雷迪', '小狼温蒂', '大象艾米丽', '小兔瑞贝卡', '小羊苏西'];
+
+let i = 0;
+while (i < peppaFriends.length ) {
+  console.log(peppaFriends[i]);
+  i++;
+}
+```
+
+* do...while
+
+```javascript
+let i = 0;
+
+do {
+  console.log(i); // 输出：0
+  i++;
+} while (i < 0 );
+```
