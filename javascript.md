@@ -325,3 +325,29 @@ do {
   i++;
 } while (i < 0 );
 ```
+### 函数
+
+#### 随机函数
+Math.random()  -> [0 , 1)
+
+#### 自定义函数
+
+* 用function声明
+* es6中声明
+```javascript
+let print = () => {
+  console.log("JavaScript 真有趣");
+};
+```
+* function函数声明后会被提升到代码头部 -----函数声明可以写在调用后面
+* function 声明```{}```后不需要加```;```
+* es6函数表达式结尾```{}```后要加```;```
+* function 声明有提升
+* es6函数声明没有提升
+* 重复声明会覆盖
+* 函数只使用一次用IIFE
+```javascript
+(function() {
+  console.log("这个函数只执行一次");
+})();
+```
