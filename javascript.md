@@ -351,3 +351,44 @@ let print = () => {
   console.log("这个函数只执行一次");
 })();
 ```
+
+#### 内置函数——计时器
+
+```javascript
+console.log(1);
+
+/**
+ * 第一个参数是代码，注意代码需用引号包裹，否则会立即执行代码
+ * 第二个参数是 1000，即 1000ms 后执行 console.log(2)
+ */
+setTimeout('console.log(2)', 1000);
+
+/**
+ * 第一个参数是匿名函数
+ * 第二个参数是 2000，即 2s 后执行 console.log(3)
+ */
+setTimeout(function () {
+  console.log(3);
+}, 2000);
+
+// 第一个参数是函数名，注意函数名后不要加小括号“()”，否则会立即执行 print4
+setTimeout(print4, 3000);
+
+console.log(5);
+
+function print4() {
+  console.log(4);
+}
+```
+
+* setTimeout是一个“回调函数”，将函数指针传入，当条件成立时调用指针对应的函数
+* setTimeout只能调用一次
+
+```javascript
+let timer = setInterval(print, 1000);
+
+function print() {
+  console.log(1);
+}
+```
+* setInterval为无限调用函数
