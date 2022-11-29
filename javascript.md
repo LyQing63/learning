@@ -392,3 +392,102 @@ function print() {
 }
 ```
 * setInterval为无限调用函数
+
+### 对象
+
+```javascript
+let person = {
+  name: 'henry',
+  age: 18,
+  run: function() {
+    console.log('running');
+  }
+}
+person.run();
+```
+
+* 创建
+```javascript
+// 第一步：创建构造函数
+function People(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// 第二步：通过 new 创建对象实例
+let person = new People('henry', 18);
+console.log(person);
+```
+
+* 属性读取
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+console.log(person.name); //henry
+console.log(person['name']); //henry
+```
+
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+let variable = 'name';
+console.log(person[variable]);
+
+variable = 'age';
+console.log(person[variable]);
+```
+
+* 属性赋值
+
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+person.name = 'tom';
+person['age'] = 10
+
+console.log(person.name);
+console.log(person.age);
+```
+
+* 属性查看
+
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+console.log(Object.keys(person));
+```
+
+* 属性删除和增加
+
+// 删除
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+delete person.name;
+
+console.log(person);
+```
+// 增加
+```javascript
+let person = {
+  name: 'henry',
+  age: 18
+}
+
+person.gender = 'male';
+```
