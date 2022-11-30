@@ -491,3 +491,278 @@ let person = {
 
 person.gender = 'male';
 ```
+#### 遍历对象属性
+
+* ```for...in```
+
+```javascript
+
+let person = {
+  name: 'henry',
+  age: 18,
+}
+
+for (let key in person) {
+  console.log('键名：' + key + '；键值：' + person[key]);
+}
+```
+
+* ```Object.keys```
+
+```javascript
+let person = {
+  name: 'henry',
+  age: 18,
+}
+
+let keys = Object.keys(person);
+
+for (let i = 0; i < keys.length; i++) {
+  console.log('键名：' + keys[i] + '；键值：' + person[keys[i]]);
+}
+```
+
+### 继承
+
+#### 判断属性是否存在
+
+* 使用 ```hasOwnProperty```方法 ---> 由Object对象提供（Object是所有对象的原型）
+* '属性名' in 对象 : 返回true of false 判断是否存在属性
+
+#### 对象转化
+
+* JSON --> Object
+```javascript
+const obj = JSON.parser(jsonstr);
+```
+
+* Object --> JSON
+```javascript
+const jsonstr2 = JSON.stringfy(object);
+```
+[Map 与 Object](https://www.jianshu.com/p/94cf51649517)
+
+#### 内置对象(Math 、 Storage)
+
+##### Storage对象
+
+* Storage 接口用于脚本在浏览器中保存数据。两个对象部署了这个接口 window.sessionStorage 与 window.localStorage
+* sessionStorage 保存的数据用于浏览器一次会话(session) ， 当会话结束(通常是窗口关闭)，数据会被清空
+* localStorage 保存的数据长期存在，下一次访问该网址的时候，网页可以直接读取以前保存的数据。
+
+* 数据存入 : ```setltem```
+```javascript
+window.localStorage.setItem(key, value);
+```
+> 如果要存入的数据不是字符串最好先转化为字符串类型
+```javascript
+const obj = {
+  name: 'henry',
+  age: 18
+}
+const value = JSON.stringify(obj);
+window.localStorage.setItem('myLocalStorage', value);
+```
+* 数据读取
+```javascript
+window.localStorage.getItem(key);
+```
+
+* 清除缓存
+```javascript
+window.localStorage.clear();
+```
+
+##### String(内置对象)
+
+* length(属性值)
+```let len = 'here is an apple'.length;```
+* 查找字符: indexOf()
+
+查找某个字符是否存在
+```javascript
+let str = 'here is an apple';
+const index = str.indexOf('an');
+console.log(index);
+```
+若存在返回该字符首字符在的位置，否则返回-1
+* trim()
+去掉两端空格
+```javascript
+// 'here' 之前有一个空格，'apple' 之后有三个空格
+let str = ' here is an apple   ';
+const trimedStr = str.trim();
+console.log(str.length);
+console.log(trimedStr.length);
+```
+> trim 不会改变原字符，而是复制一个处理过后的字符串返回
+
+* 截取字符串：substring/substr
+
+substring第二个值为右限
+substr第二个值为截取长度
+```javascript
+let url = 'https://www.youkeda.com/userhome#collect';
+
+// 首先找到 # 后第一个字母的下标
+const index = url.indexOf('#') + 1;
+
+// 有 hash 才能进行截取，没有就直接提示不存在
+if (index) {
+  // 用 substring 截取字符串
+  const hash1 = url.substring(index, url.length);
+
+  // 计算 hash 的长度
+  const lenHash = url.length - index;
+  // 用 substr 截取字符串
+  const hash2 = url.substr(index, lenHash);
+
+  console.log(hash1);
+  console.log(hash2);
+} else {
+  console.log('不存在 hash');
+}
+```
+* split
+分割字符串
+```javascript
+const splitedStr = 'a|b|c'.split('|');
+console.log(splitedStr);
+```
+返回一个由分割出来的子字符串形成的一个数组
+> split也只是复制一个处理过后的返回值，不改变原字符串
+
+##### Array(内置对象)
+
+* join()
+连接数组
+```javascript
+let arr = [1, 2, 3, 4];
+
+arr.join(" "); // '1 2 3 4'
+arr.join(" | "); // "1 | 2 | 3 | 4"
+arr.join(); // "1,2,3,4"
+```
+* reverse()
+倒置排序
+```javascript
+let arr = ["a", "b", "c"];
+
+arr.reverse(); // ["c", "b", "a"]
+arr; // ["c", "b", "a"]
+```
+* sort()
+排序
+```javascript
+let arr = [
+  { name: "jenny", age: 18 },
+  { name: "tom", age: 10 },
+  { name: "mary", age: 40 },
+];
+
+arr.sort(function (a, b) {
+  return a.age - b.age;
+}); 
+
+console.log(arr);
+```
+sort()内要传入参数必须为一个函数，函数中a,b为将要比较的两个值，返回正则左边的a排在右边的b的后面，反之为负a排在b的前面，相等不变。
+
+* map/forEach
+  遍历
+
+  * 有返回值的遍历:map
+  ```javascript
+    let arr = [
+    { name: "jenny", age: 18 },
+    { name: "tom", age: 10 },
+    { name: "mary", age: 40 },
+    ];
+	// elem: 数组成员
+	// index: 成员下标
+	// a: 整个数组
+	const handledArr = arr.map(function (elem, index, a) {
+  		elem.age += 1;
+  		console.log(elem, index, a);
+  		return elem.name;
+	});
+	console.log(arr);
+	console.log(handledArr);
+	```
+	* forEach
+	无返回值
+~~~javascript
+const handledArr = arr.forEach(function (elem, index, a){
+	elem.age += 1;
+	console.log(elem, index, a);
+	return elem.name;
+	});
+	
+console.log(handledArr);	
+~~~
+此程序输出```undefined```
+
+##### Date(内置对象)
+* new Date()
+获取当前时间
+```javascript
+let now = new Date();
+console.log(now);
+```
+* 传入参数可构造特定的时间
+```javascript
+// 传入表示“年月日时分秒”的数字
+let dt1 = new Date(2020, 0, 6, 0, 0, 0);
+console.log(dt1);
+
+// 传入日期字符串
+let dt2 = new Date("2020-1-6");
+console.log(dt2);
+
+// 传入距离国际标准时间的毫秒数
+let dt3 = new Date(1578240000000);
+console.log(dt3);
+```
+* 日期运算
+
+	* 两个时间对象相减返回值为毫秒数差
+	* 用```<```与```>```比较时间早晚
+* Date.parse()
+解析日期字符串，返回该时间距离时间零点(1970年1月1日00:00:00)的毫秒数
+```javascript
+let dt = Date.parse("2020-1-6");
+console.log(dt); // 1578240000000
+```
+* 类型转换
+	* to方法 ---> toJSON()
+	* get方法
+```javascript
+let dt = new Date();
+dt.getTime(); // 返回实例距离1970年1月1日00:00:00的毫秒数。
+dt.getDate(); // 返回实例对象对应每个月的几号（从1开始）。
+dt.getDay(); // 返回星期几，星期日为0，星期一为1，以此类推。
+dt.getFullYear(); // 返回四位的年份。
+dt.getMonth(); // 返回月份（0表示1月，11表示12月）。
+dt.getHours(); // 返回小时（0-23）。
+dt.getMilliseconds(); // 返回毫秒（0-999）。
+dt.getMinutes(); // 返回分钟（0-59）。
+dt.getSeconds(); // 返回秒（0-59）。
+```
+> 除了日期外其他的时间的都是从0开始的
+* set方法
+设置对象的时间
+```javascript
+let dt = new Date();
+dt.setTime(ms); // 设置实例距离1970年1月1日00:00:00的毫秒数。
+dt.setDate(date); // 设置实例对象对应每个月的几号（从1开始）。
+dt.setFullYear(year); // 设置四位的年份。
+dt.setMonth(month); // 设置月份（0表示1月，11表示12月）。
+dt.setHours(hour); // 设置小时（0-23）。
+dt.setMilliseconds(ms); // 设置毫秒（0-999）。
+dt.setMinutes(min); // 设置分钟（0-59）。
+dt.setSeconds(sec); // 设置秒（0-59）。
+```
+
+> 没有setDay方法，星期是通过计算得到的
+
+![Date](https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-4-HTML-CSS/7/3.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10)
