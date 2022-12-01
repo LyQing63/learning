@@ -766,3 +766,62 @@ dt.setSeconds(sec); // 设置秒（0-59）。
 > 没有setDay方法，星期是通过计算得到的
 
 ![Date](https://qgt-document.oss-cn-beijing.aliyuncs.com/P3-4-HTML-CSS/7/3.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10)
+
+### BOM
+
+> 浏览器对象模型
+
+* 对象 -> window（窗口）、navigator（浏览器）、history（历史）、screen（显示屏幕）、location（地址）
+
+> screen 电脑唯一；
+> navigator 是整个浏览器唯一的，如果有多个浏览器就会有多个navigator；
+> window 是每个网页唯一的，每个网页都有一个独立的window；
+> history,location 是每个网页的信息，当然也是网页唯一的；
+
+#### window 对象是浏览器中默认对象，可以隐式引用window对象的属性和方法
+如：
+```javascript
+console.log('优课达');
+window.console.log('优课达');
+
+console.log(navigator);
+console.log(window.navigator);
+
+function hello() {}
+console.log(hello);
+console.log(window.hello);
+```
+
+#### location
+![location](https://style.youkeda.com/img/course/f4/8/3.jpeg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10)
+
+* reload 方法，用于刷新页面，可以用setTimeout来进行延迟操作
+```javascript
+setTimeout(function () {
+  window.location.reload();
+}, 3000);
+```
+> setTimeout 只会执行一次，但在此会不断被执行，因为网页每次被reload（刷新）都会重新执行js文件，达到不断刷新的效果
+
+* 跳转到新的页面
+
+刷新后将会跳转到新的页面
+```javascript
+window.location = 'https://www.youkeda.com';
+```
+
+#### history
+
+储存会话记录
+储存到一个栈数组中
+* back()
+  对应浏览器左键头
+
+* forward()
+  对应浏览器右箭头
+
+#### navigator
+
+* useragent代表用户数据
+
+#### screen
