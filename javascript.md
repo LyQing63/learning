@@ -825,3 +825,52 @@ window.location = 'https://www.youkeda.com';
 * useragent代表用户数据
 
 #### screen
+
+### DOM
+
+文档对象模型
+
+* web 页面
+HTML和CSS绘制的页面，也称为文档
+
+* 脚本或编程语言
+#### DOM映射
+DOM树：
+![DOM树](https://style.youkeda.com/img/course/f4/9/1.jpeg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10)
+
+* DOM节点（Node/Element）
+每个HTML标签
+* 分支称为儿子节点
+* 之后是孙子节点
+* 所有其父标签为祖先节点
+* 平行的为兄弟节点
+
+#### 访问
+```window.document;```
+
+* 选择器查询
+
+```querySelector()```
+
+```javascript
+document.querySelector('main .core .subtitle');
+```
+
+* 迭代查询
+```javascript
+let subtitle = document.querySelector('main .core .subtitle');
+console.log(subtitle.querySelector('a'));
+```
+
+* 选择器全量查询
+查询所有满足条件的节点
+```javascript
+document.querySelectorAll('input');
+```
+
+* 其他
+```getElementById();``` 根据Id查询某个节点
+```getElementsByClassName();```根据class查询多个节点
+```getElementsByTagName();```根据标签名查询多个节点
+
+> querySelector系列与getElement系列的区别在与querySelector系列没有动态性
