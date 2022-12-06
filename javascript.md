@@ -941,3 +941,73 @@ const article = document.querySelector('article');
 console.log(article.dataset);
 //dataset是一个Map对象，他是data-*中*的Key-Value集合
 ```
+#### DOM操作
+
+* DOM样式修改
+```javascript
+// 保存当前是否选中的状态
+let isSelected = false;
+
+// 获取整个元素的节点
+const box = document.querySelector('.box');
+
+// 获取select框节点
+const select = document.querySelector('.select');
+
+// 给整个元素添加点击事件【大家可以先忽略这部分】
+box.addEventListener('click', function () {
+  // 点击以后触发这个函数
+
+  // 修改当前选中状态，取反即可
+  isSelected = !isSelected;
+
+  // 如果当前是选中状态、则添加img到select中
+  if (isSelected) {
+    // 创建一个img标签节点
+    const img = document.createElement('img');
+
+    // 设置img的src属性和样式，让其撑满select框
+    img.src = 'https://style.youkeda.com/img/sandwich/check.png';
+    img.setAttribute('style', 'width: 100%; height: 100%;');
+
+    // 将这个节点添加到select框中
+    select.appendChild(img);
+  } else {
+    // 如果不是选择状态，则清空内部子元素
+    select.innerHTML = '';
+  }
+});
+```
+* 添加新节点
+```appendChild(newNode)```
+此方法可以添加子节点
+```inserBefore(newNode,referenceNode)```
+此方法与appendChild相反，实在所有目标子节点之前添加节点
+> newNode为新节点，referenceNode为目标节点
+```javascript
+function createDisease(txt) {
+  const dom = document.createElement('li');
+  const domTxt = document.createTextNode(txt);
+  dom.appendChild(domTxt);
+  return dom;
+}
+
+const root = document.querySelector('ul.root');
+const sars = document.querySelector('li.sars');
+
+// 创建 H1N1
+const H1N1 = createDisease('H1N1');
+root.appendChild(H1N1);
+
+// 创建 新型冠状病毒
+const nCoV = createDisease('新型冠状病毒');
+root.insertBefore(nCoV, sars);
+```
+* 设置样式、属性
+```img.setAttribute('style', 'width: 100%; height: 100%;');```
+```dom.style.color = 'xxxx';```
+两者均可
+> 可用classList来操作节点class属性
+
+* innerHTML
+用```innerHTML = ' '```来清空节点内容
