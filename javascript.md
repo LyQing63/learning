@@ -874,3 +874,70 @@ document.querySelectorAll('input');
 ```getElementsByTagName();```根据标签名查询多个节点
 
 > querySelector系列与getElement系列的区别在与querySelector系列没有动态性
+
+#### DOM属性
+
+* DOM种类
+每一种HTML标签都有一种DOM类型对应
+* DOM属性
+	* DOM类别
+	1. 元素节点 --> HTML中所有标签
+	2. 文本节点 --> 如纯文本节点
+	3. 特性节点 --> 标签属性
+
+```javascript
+let divDom = document.querySelecor('duv#test');
+console.log(divDom.nodeType, divDom.nodeName, divDom.nodeValue);
+//			节点类型			节点名称		节点值
+
+let txtDom = divDom.firstChild; //返回的divDom的第一个子节点
+console.log(txtDom.nodeType, txtDom.nodeName, txtDom.nodeValue);
+
+let attDom = divDom.attributes.id; //获取divDom的id属性
+console.log(attom.nodeType, attom.nodeName, attom.nodeValue);
+```
+> attributes可以获取元素节点的所有属性，得到的结果是一个字典，可以通过属性Key获取对应的特性系节点
+
+* DOM内容
+获取内容
+```javascript
+let divDom = document.querySelector('div#test');
+console.log(div.outerHTML); // 输出divDom的整个HTML代码
+
+console.log(div.innerHTML); // 输出divDom的内部HTML代码
+
+console.log(div.innerText); // 输出DOM内部纯文本内容
+```
+
+* DOM亲属
+```javascript
+let divDom = document.querySelecor('div#text');
+console.log(divDom.firstChild, divDom.lastChild); // 输出divDom节点的第一个和最后一个子节点
+
+console.log(divDom.childNodes); // 输出一个子节点组成的nodeList
+
+console.log(divDom.parentNodes); // 输出父节点包括本身
+```
+
+* DOM样式
+```javascript
+let h1Dom = document.querySelecor('h1');
+console.log(h1Dom.classList); // 输出h1的class名称组成的数组
+
+console.log(h1Dom.style); // 对象或者字典的方法储存CSSStyle
+
+console.log(h1Dom.style.color); // 输出其中一个color属性的值
+```
+* DOM数据属性
+
+利用```data-*```允许我们在标准内于HTML元素中存储额外的信息
+```HTML
+<article data-parts="3" data-words="1314" data-category="python"></article>
+```
+
+* js获取DOM属性
+```javascript
+const article = document.querySelector('article');
+console.log(article.dataset);
+//dataset是一个Map对象，他是data-*中*的Key-Value集合
+```
