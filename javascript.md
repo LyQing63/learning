@@ -387,7 +387,7 @@ function print4() {
 ```javascript
 let timer = setInterval(print, 1000);
 
-function print() {
+function print() { 
   console.log(1);
 }
 ```
@@ -1011,3 +1011,90 @@ root.insertBefore(nCoV, sars);
 
 * innerHTML
 用```innerHTML = ' '```来清空节点内容
+
+* 实现时钟
+```javascript
+const numberDivs = document.querySelectorAll('#number div');
+const numberSpans = document.querySelectorAll('#number span');
+
+// 容器渲染
+for (let i = 0; i < numberDivs.length; i++) {
+  numberDivs[i].style.transform = 'rotate(' + i * 30 + 'deg)';
+}
+
+// 纠正文字的旋转度数
+for (let j = 0; j < numberSpans.length; j++) {
+  numberSpans[j].style.transform = 'rotate(' + j * -30 + 'deg)';
+}
+```
+
+#### DOM事件
+
+DOM可以通过```addEventListener(eventName, callback)```绑定```eventName```事件
+
+* click
+```javascript
+const h1 = document.querySelector("h1");
+h1.addEventListener("click", function (e) {
+  console.log(e);
+});
+
+//属性：
+//1. target  ---> ```<h1>优课达-学的比别人好一点</h1>```		点击触发的节点
+//2. type ---> ```click```		事件名称
+//3. pageX/pageY ---> ```92/97```		鼠标事件出发的页面坐标
+```
+dblclick: 双击事件;  
+mousedown: 按下任意鼠标按钮; 
+mouseenter: 指针移到有事件监听的元素内;
+mouseleave: 鼠标移出元素范围外(不冒泡);
+mousemove: 指针在元素内移动时持续触发;
+mouseover: 指针移到有事件监听的元素或者它的子元素内;
+mouseout: 指针溢出元素，或者移到它的子元素上;
+mouserup: 在元素上释放任意鼠标按键;
+
+* focus
+表单组件: input ,Textarea ,etc ... 来获取焦点事件blur;
+* keyboard
+keydown: 键盘按下事件;
+keyup: 键盘释放事件;
+* 视图事件
+scroll: 文档滚动事件;
+resize: 键盘释放事件;
+* 资源
+load: 资源加载成功的事件;
+
+> 编码思路：监听DOM事件，使用DOM操作，修改DOM属性
+
+#### 点击事件冒泡
+
+* 子标签的点击事件触发后会向父类延续，触发父类的点击事件
+* 阻止冒泡 - e.stopPropagation();
+
+#### 捕获
+
+* 从HTML根节点开始依次移动到当前元素，与冒泡相反
+* 使用捕获 - dom.addEventListener('click', function() {}, ***true*** );
+
+#### 委托
+
+* 实质时冒泡事件的一种应用
+实现：
+```javascript
+const box = document.querySelector('.box');
+
+box.addEventListener('click', function(e) { 
+  // 注意box区域比img大，如果点击在空白间隔区域，那么返回的节点将不会是IMG，需要特殊处理一下
+  if (e.target.nodeName === 'IMG') {
+    document.body.style.backgroundImage = `url(${e.target.src})`;
+  }
+});
+```
+* 通过给父类添加监听器，提取子类点击事件的内容
+
+#### 鼠标移动事件
+
+1. mousemove : 鼠标移动事件
+2. mouseenter/mouserleave : 鼠标进入和离开事件，仅作用于当前节点，不会作用于后代节点
+3. mouseover/mouseout : 也是鼠标进入和离开事件，但会作用于后代节点
+> 大部分都会用```mouseover/mouseout```
