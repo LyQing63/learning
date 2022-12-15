@@ -1010,6 +1010,7 @@ root.insertBefore(nCoV, sars);
 > 可用classList来操作节点class属性
 
 * innerHTML
+
 用```innerHTML = ' '```来清空节点内容
 
 * 实现时钟
@@ -1097,4 +1098,53 @@ box.addEventListener('click', function(e) {
 1. mousemove : 鼠标移动事件
 2. mouseenter/mouserleave : 鼠标进入和离开事件，仅作用于当前节点，不会作用于后代节点
 3. mouseover/mouseout : 也是鼠标进入和离开事件，但会作用于后代节点
+
 > 大部分都会用```mouseover/mouseout```
+> 用```innerHTML = ' '```来清空节点内容
+
+#### 焦点事件
+1. foucs 和 blur
+
+#### 内容值变化
+1. input : 当表单的value值改变，触发
+2. change: 当用户提交对元素值的更改时触发
+
+#### 滚动事件
+1. scroll
+```javascript
+//获取竖直上滚动距离
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+});
+```
+* 无尽滚动
+> 当页面拉直最底时添加新文章
+```javascript
+window.addEventListener('scroll', function () {
+  // 可以通过clientHeight获取内容高度
+  const height = document.body.clientHeight;
+
+  // 通过screen.height获取浏览器的高度
+  const screenHeight = window.screen.height;
+
+  // 当距离底部的距离小于500时，触发页面新增内容
+  if (height - window.scrollY - screenHeight < 500) {
+    console.log('加载新文章内容');
+    // 在底部添加10张图片
+    const div = document.createElement('div');
+    let str = '';
+    for (let i = 0; i < 10; i++) {
+      str += `
+       <img
+        class="first"
+        alt=""
+        src="https://document.youkeda.com/P3-1-HTML-CSS/1.8/1.jpg?x-oss-process=image/resize,h_300"
+      />
+      `;
+    }
+    div.innerHTML = str;
+    document.body.appendChild(div);
+  }
+});
+```
+* 
