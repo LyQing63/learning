@@ -1147,4 +1147,48 @@ window.addEventListener('scroll', function () {
   }
 });
 ```
-* 
+### GET请求
+
+* 利用```fetch```获取API数据
+```javascript
+fetch(
+  'https://www.fastmock.site/mock/b73a1b9229212a9a3749e046b1e70285/f4/f4-11-1-1'
+)
+  .then(function (response) {
+    return response.json();
+  })//第一个then的结果会成为下个then的输入参数
+  .then(function (myJson) {
+    console.log(myJson);
+  });
+```
+Headers内的数据
+```Request URL```: 请求地址
+```Request Method```: 请求类型
+```Status Code```: 请求状态码
+Preview内查看返回值
+
+### POST请求
+```javascript
+// 把JSON数据序列化成字符串
+const data = JSON.stringify({
+  username: 'admin',
+  password: '123456'
+});
+//stringfy将json字符串转换为json
+fetch(
+  'https://www.fastmock.site/mock/b73a1b9229212a9a3749e046b1e70285/f4/f4-11-4-1',
+  {
+    method: 'POST',
+    body: data,
+    headers: {
+      'content-type': 'application/json'
+    }
+  }
+)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(myJson);
+  });
+```
